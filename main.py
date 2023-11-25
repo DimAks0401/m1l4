@@ -23,15 +23,46 @@ async def heh(ctx, count_heh = 5):
 @bot.command()
 async def joined(ctx, member: discord.Member):
     """Says when a member joined."""
-    await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
+    await ctx.send(f'{member.name} присоединился {discord.utils.format_dt(member.joined_at)}')
 
 @bot.command()
 async def rcoin(ctx):
     await ctx.send("Кидаю монетку")
     time.sleep(1)
-    c = random.randint(1, 2)
-    if c == 1:
-        await ctx.send("Орёл")
-    elif c == 2:
-        await ctx.send("Решка")    
+    while True:
+        c = random.randint(1, 2)
+        if c == 1:
+            await ctx.send("Орёл")
+            break
+        elif c == 2:
+            await ctx.send("Решка") 
+            break
+
+@bot.command()
+async def bhelp(ctx):
+    await ctx.send("Можно использовать вот такие команды: ")
+    await ctx.send(":hello")      
+    await ctx.send(":heh Напишите цифру здесь")    
+    await ctx.send(":rcoin")
+    await ctx.send(":bhelp :)")  
+    await ctx.send(":mball")       
+
+@bot.command() 
+async def mball(ctx):
+    await ctx.send("Добро пожаловать в магический шар")
+    time.sleep(3)
+    o = random.randint(1, 6)
+    if o == 1:
+        await ctx.send("Да")
+    elif o == 2:
+        await ctx.send("Нет")
+    elif o == 3:
+        await ctx.send("Если вы не сделаете этого то вам капут")
+    elif o == 4:
+        await ctx.send("Лучше полежите на диване")
+    elif o == 5:
+        await ctx.send("Ни в коем случаи не делайте этого")     
+    elif o == 6:
+        await ctx.send("Беги делать это.")    
+           
 bot.run("Secret token")
