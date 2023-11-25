@@ -50,6 +50,7 @@ async def bhelp(ctx):
 @bot.command() 
 async def mball(ctx):
     await ctx.send("Добро пожаловать в магический шар")
+    await ctx.send("Мыслено задайте вопрос")
     time.sleep(3)
     o = random.randint(1, 6)
     if o == 1:
@@ -64,5 +65,5 @@ async def mball(ctx):
         await ctx.send("Ни в коем случаи не делайте этого")     
     elif o == 6:
         await ctx.send("Беги делать это.")    
-           
+     
 bot.run("Secret token")
