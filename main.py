@@ -1,3 +1,4 @@
+import os
 import discord
 import random
 import time
@@ -46,6 +47,7 @@ async def bhelp(ctx):
     await ctx.send(":rcoin")
     await ctx.send(":bhelp :)")  
     await ctx.send(":mball")       
+    await ctx.send(":meme")
 
 @bot.command() 
 async def mball(ctx):
@@ -66,4 +68,14 @@ async def mball(ctx):
     elif o == 6:
         await ctx.send("Беги делать это.")    
      
+@bot.command()
+async def meme(ctx):
+    MemeList = os.listdir("meme")
+    rmeme = random.choice(MemeList)
+    with open(f'meme/{rmeme}', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+   # Можем передавать файл как параметр!
+    await ctx.send(file=picture)     
+    
 bot.run("Secret token")
