@@ -1,5 +1,3 @@
-
-bot.run("Secret token")
 import os
 import discord
 import random
