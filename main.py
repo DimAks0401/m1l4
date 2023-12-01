@@ -1,5 +1,6 @@
 import os
 import discord
+import requests
 import random
 import time
 from discord.ext import commands
@@ -48,6 +49,8 @@ async def bhelp(ctx):
     await ctx.send(":bhelp :)")  
     await ctx.send(":mball")       
     await ctx.send(":meme")
+    await ctx.send(":rduck")
+    await ctx.send(":rcat")
 
 @bot.command() 
 async def mball(ctx):
@@ -77,5 +80,24 @@ async def meme(ctx):
         picture = discord.File(f)
    # Можем передавать файл как параметр!
     await ctx.send(file=picture)     
+    
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+@bot.command()
+async def rduck(ctx):
+    '''По команде duck вызывает функцию get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command()
+async def rcat(ctx):
+    RCats = os.listdir("Cats")
+    Cat = random.choice(RCats)
+    with open(f"Cats/{Cat}", "rb") as f:
+        Meow = discord.File(f)
+    await ctx.send(file = Meow)    
     
 bot.run("Secret token")
